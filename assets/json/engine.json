@@ -1,0 +1,192 @@
+[
+    {
+        "id": 9,
+        "description": "Reprogrammed Factory Trim (includes ROM chips) ECU, naturally aspirated engine",
+        "points": 1
+    },
+    {
+        "id": 10,
+        "description": "Non-Factory Trim ECU, naturally aspirated engine",
+        "points": 2
+    },
+    {
+        "id": 11,
+        "description": "Reprogrammed Factory Trim (includes ROM chips) ECU, forced induction engine air/fuel change only. If applicable, additional points must be added for an increase in boost.",
+        "points": 3
+    },
+    {
+        "id": 12,
+        "description": "Non-Factory Trim ECU, forced induction engine engine air/fuel change only. If applicable, additional points must be added for an increase in boost.",
+        "points": 4
+    },
+    {
+        "id": 13,
+        "description": "Turbo Boost increase <50%",
+        "points": 2
+    },
+    {
+        "id": 14,
+        "description": "Turbo Boost increase >50%",
+        "points": 4
+    },
+    {
+        "id": 15,
+        "description": "Non-Factory Trim/modified air intake before the throttle body",
+        "points": 1
+    },
+    {
+        "id": 16,
+        "description": "Non-factory trim/modified headlight to allow increased or cooler air flow to engine air intake, unless already taking one point for cold air intake.",
+        "points": 1
+    },
+    {
+        "id": 17,
+        "description": "Non-Factory Trim/modified throttle body",
+        "points": 1
+    },
+    {
+        "id": 18,
+        "description": "Non-Factory Trim/modified fuel delivery system, except fuel pump(s) (i.e. fuel injectors, fuel rails, fuel regulators)",
+        "points": 1
+    },
+    {
+        "id": 19,
+        "description": "Non-Factory Trim/modified intake manifold 1-6 cylinder engines, including manifold porting",
+        "points": 1
+    },
+    {
+        "id": 20,
+        "description": "Non-Factory Trim/modified intake manifold 7-12 cylinder engines, including manifold porting",
+        "points": 2
+    },
+    {
+        "id": 21,
+        "description": "Water-alcohol injection System",
+        "points": 3
+    },
+    {
+        "id": 22,
+        "description": "Non-Factory Trim/modified supercharger pulley",
+        "points": 3
+    },
+    {
+        "id": 23,
+        "description": "Non-Factory Trim/modified boost controller or vacuum lines that control boost",
+        "points": 3
+    },
+    {
+        "id": 24,
+        "description": "Non-Factory Trim/modified wastegate, wastegate actuator",
+        "points": 1
+    },
+    {
+        "id": 25,
+        "description": "Non-Factory Trim/modified intercooler",
+        "points": 2
+    },
+    {
+        "id": 26,
+        "description": "Non-Factory Trim/modified intercooler pipes only",
+        "points": 1
+    },
+    {
+        "id": 27,
+        "description": "Increase compression ratio by .50 or less",
+        "points": 0
+    },
+    {
+        "id": 28,
+        "description": "Dry sump engine oil system",
+        "points": 1
+    },
+    {
+        "id": 29,
+        "description": "Non-Factory Trim/modified header 1-6 cyl (pre-cat exhaust change)",
+        "points": 1
+    },
+    {
+        "id": 30,
+        "description": "Non-Factory Trim/modified header 7-12 cyl (pre-cat exhaust change)",
+        "points": 2
+    },
+    {
+        "id": 31,
+        "description": "Non-Factory Trim/modified exhaust beyond the catalytic converter (e.g. cat back exhaust) ",
+        "points": 1
+    },
+    {
+        "id": 32,
+        "description": "Non-Factory Trim/modified catalytic converter(s)",
+        "points": 1
+    },
+    {
+        "id": 33,
+        "description": "Complete removal or gutting of OEM catalytic converter(s) (i.e. test pipe in place of catalytic converter)",
+        "points": 1
+    },
+    {
+        "id": 34,
+        "description": "Non-Factory Trim/modified power steering, crank pulley",
+        "points": 1
+    },
+    {
+        "id": 35,
+        "description": "Non-Factory Trim/modified/deleted engine or accessory fan and/or other engine accessories not otherwise listed",
+        "points": 1
+    },
+    {
+        "id": 36,
+        "description": "Any type of commercially available gasoline or diesel fuel",
+        "points": 0
+    },
+    {
+        "id": 37,
+        "description": "Non-Factory Trim/modified fuses, relays, wiring, or addition of Power Distribution Modules",
+        "points": 0
+    },
+    {
+        "id": 38,
+        "description": "Non-Factory Trim hoses, belts, clamps",
+        "points": 0
+    },
+    {
+        "id": 39,
+        "description": "Non-Factory Trim air or fuel filters",
+        "points": 0
+    },
+    {
+        "id": 40,
+        "description": "Non-Factory Trim radiator",
+        "points": 0
+    },
+    {
+        "id": 41,
+        "description": "Non-Factory Trim battery, starter motor, alternator, spark plugs, spark plug wires, ignition coils",
+        "points": 0
+    },
+    {
+        "id": 42,
+        "description": "Non-Factory Trim/modifications to oil system",
+        "points": 0
+    },
+    {
+        "id": 43,
+        "description": "Non-Factory Trim/modifications/number of fuel pumps",
+        "points": 0
+    },
+    {
+        "id": 44,
+        "description": "Non-Factory Trim/modified muffler tips/components designed strictly for the purposes of reducing sound with no measurable or theoretical performance advantage (e.g. exhaust tip turn-down or second muffler)",
+        "points": 0
+    },
+    {
+        "id": 45,
+        "description": "Factory specification engine rebuild and head shave",
+        "points": 0
+    },
+    {
+        "id": 46,
+        "description": "Accessories and/or gauges",
+        "points": 0
+    }
+]

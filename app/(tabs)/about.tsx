@@ -1,9 +1,9 @@
 import { StyleSheet, Text, View } from 'react-native';
 
-export default function HomeScreen() {
+export default function AboutScreen() {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Welcome to the COMSCC Classification Tool. Use the link on the navigation bar below to use the calculator.</Text>
+      <Text style={styles.text}>About screen</Text>
     </View>
   );
 }

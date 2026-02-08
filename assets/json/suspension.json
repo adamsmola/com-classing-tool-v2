@@ -1,0 +1,152 @@
+[
+    {
+        "id": 9,
+        "description": "Non-Factory Trim non-adjustable shocks, struts, dampers",
+        "points": 1
+    },
+    {
+        "id": 10,
+        "description": "Non-Factory Trim 1-way adjustable shocks, struts, dampers",
+        "points": 1
+    },
+    {
+        "id": 11,
+        "description": "Non-Factory Trim 2-way adjustable shocks, struts, dampers",
+        "points": 2
+    },
+    {
+        "id": 12,
+        "description": "Non-Factory Trim 3-way (or more) adjustable shocks, struts, dampers",
+        "points": 3
+    },
+    {
+        "id": 13,
+        "description": "Non-Factory Trim shocks, struts, dampers with piggyback canister or external remote canister  note: must also take points for shocks/struts/dampers as listed above",
+        "points": 1
+    },
+    {
+        "id": 14,
+        "description": "Non-adjustable non-Factory Trim coil springs, leaf springs, or torsion bars (or non-modified factory height adjustment)",
+        "points": 2
+    },
+    {
+        "id": 15,
+        "description": "Height adjustable non-Factory Trim coil springs, leaf springs, or torsion bars (or springs with modified factory height adjustment)",
+        "points": 3
+    },
+    {
+        "id": 16,
+        "description": "Torsion bar to coil spring conversion",
+        "points": 1
+    },
+    {
+        "id": 17,
+        "description": "Non-Factory Trim sway bars",
+        "points": 1
+    },
+    {
+        "id": 18,
+        "description": "Non-Factory Trim engine bracing (not including motor and other drivetrain mounts)",
+        "points": 1
+    },
+    {
+        "id": 19,
+        "description": "Non-Factory Trim/Modified Control Arms or Non-Factory Trim/Modified Trailing or Camber Arms of different dimensions than Factory Trim",
+        "points": 1
+    },
+    {
+        "id": 20,
+        "description": "Modification of wishbone suspension upright",
+        "points": 2
+    },
+    {
+        "id": 21,
+        "description": "Non-Factory Trim subframe that does not alter suspension geometry",
+        "points": 1
+    },
+    {
+        "id": 22,
+        "description": "Non-Factory Trim/modified Watts Link",
+        "points": 1
+    },
+    {
+        "id": 23,
+        "description": "Non-Factory Trim/modified panhard bar",
+        "points": 1
+    },
+    {
+        "id": 24,
+        "description": "Non-Factory Trim torque bar",
+        "points": 2
+    },
+    {
+        "id": 25,
+        "description": "Modify OEM torque bar",
+        "points": 1
+    },
+    {
+        "id": 26,
+        "description": "Non-Factory Trim suspension bushings or spherical bearings, except rubber or polyurethane , except for spherical bearings in strut or shock top mounts",
+        "points": 1
+    },
+    {
+        "id": 27,
+        "description": "Non-Factory Trim/modified suspension components which enable alignment settings beyond Factory Trim capability (does not apply to coil springs, leaf springs, or torsion bars); note - additional points may need to be taken for specific non-Factory Trim suspension components if listed elsewhere in this section",
+        "points": 1
+    },
+    {
+        "id": 28,
+        "description": "Non-Factory Trim bracing, including strut/shock tower brace, chassis brace(s) (e.g. X-brace or cross-bar)",
+        "points": 0
+    },
+    {
+        "id": 29,
+        "description": "Custom Alignment settings, including caster, camber, or toe, regardless of factory recommendations; note: modifications to Factory-trim suspension components for the purposes of alignment adjustment must be assessed separately",
+        "points": 0
+    },
+    {
+        "id": 30,
+        "description": "Non-Factory Trim suspension bushings, either rubber or polyurethane",
+        "points": 0
+    },
+    {
+        "id": 31,
+        "description": "Non-Factory Trim suspension bushing limiters of any material; note - points must also be taken for bushing material, if applicable",
+        "points": 0
+    },
+    {
+        "id": 32,
+        "description": "Removal of swaybars",
+        "points": 0
+    },
+    {
+        "id": 33,
+        "description": "Non-Factory Trim sway bar endlinks",
+        "points": 0
+    },
+    {
+        "id": 34,
+        "description": "Non-Factory Trim eccentric camber bolts",
+        "points": 0
+    },
+    {
+        "id": 35,
+        "description": "Non-Factory Trim camber adjusting ball joints",
+        "points": 0
+    },
+    {
+        "id": 36,
+        "description": "Modified steering rack from power assist to manual or manual to power assist  ",
+        "points": 0
+    },
+    {
+        "id": 37,
+        "description": "Suspension re-enforcement provided by installation of roll bar or roll cage that adheres to requirements listed in the Car Requirements section of the rules",
+        "points": 0
+    },
+    {
+        "id": 38,
+        "description": "Disabling or enabling of Factory Trim Electronic Stability Control systems",
+        "points": 0
+    }
+]

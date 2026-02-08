@@ -1,0 +1,112 @@
+[
+    {
+        "id": 9,
+        "description": "Non-Factory Trim sequential gearbox",
+        "points": 6
+    },
+    {
+        "id": 10,
+        "description": "Non-Factory Trim non-sequential (H pattern) Dogbox gearbox",
+        "points": 4
+    },
+    {
+        "id": 11,
+        "description": "Dual clutch transmission - DSG, DCT, PDK, etc",
+        "points": 3
+    },
+    {
+        "id": 12,
+        "description": "7 speed or more automatic transmission - GM HydraMatic 10L90 and 10L80, Ford 10R80, ZF HP8, Mercedes 7G-Tronic etc",
+        "points": 3
+    },
+    {
+        "id": 13,
+        "description": "Automated single clutch manual transmission - SMG, Ferrari F1, Lambo E-Gear etc",
+        "points": 1
+    },
+    {
+        "id": 14,
+        "description": "Manual tranmission with factory autoblip (Nissan 370Z, BMW M2, C7 Corvette, Porsche) or aftermarket add-on",
+        "points": 1
+    },
+    {
+        "id": 15,
+        "description": "5 or 6 speed manual transmission",
+        "points": 0
+    },
+    {
+        "id": 16,
+        "description": "3 or 4 speed manual transmission",
+        "points": -1
+    },
+    {
+        "id": 17,
+        "description": "Automatic transmission with 6 speeds or less",
+        "points": -2
+    },
+    {
+        "id": 18,
+        "description": "CVT Transmission",
+        "points": -2
+    },
+    {
+        "id": 19,
+        "description": "Non-Factory Trim/modified final drive ratio",
+        "points": 1
+    },
+    {
+        "id": 20,
+        "description": "Non-Factory Trim/modified LSD if vehicle is equipped with LSD from the factory or was a factory option",
+        "points": 0
+    },
+    {
+        "id": 21,
+        "description": "Non-Factory Trim/modified LSD if vehicle is not equipped with LSD from the factory or was not a factory option",
+        "points": 1
+    },
+    {
+        "id": 22,
+        "description": "Non-Factory Trim/modified traction control (ie via Non-Factory Trim ECU mapping)",
+        "points": 2
+    },
+    {
+        "id": 23,
+        "description": "Non-Factory Trim/modified electronically controlled center differential mapping (ie GEMS center diff controller for Mitsubishi Evo, Subaru STi)",
+        "points": 2
+    },
+    {
+        "id": 24,
+        "description": "Non-Factory Trim/modified half shafts or driveshafts including carbon fiber and aluminium driveshafts",
+        "points": 1
+    },
+    {
+        "id": 25,
+        "description": "Relocation of transmission location via altered mounts",
+        "points": 2
+    },
+    {
+        "id": 26,
+        "description": "Non-Factory Trim/modified clutch, pressure plate, and/or clutch assembly",
+        "points": 0.5
+    },
+    {
+        "id": 27,
+        "description": "Non-Factory Trim/modified flywheel",
+        "points": 0
+    },
+    {
+        "id": 28,
+        "description": "Non-Factory Trim/modified motor, transmission, differential, and/or other drivetrain mounts, including metallic and non-metallic mounts",
+        "points": 0
+    },
+    {
+        "id": 29,
+        "description": "Non-Factory Trim/modified shifter, including bushings, lever, etc.",
+        "points": 0
+    },
+    {
+        "id": 30,
+        "description": "Enabling or disabling of Factory Trim traction control",
+        "points": 0
+    }
+]

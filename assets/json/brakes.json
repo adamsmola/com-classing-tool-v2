@@ -1,0 +1,57 @@
+[
+    {
+        "id": 9,
+        "description": "NonFactory Trim brakecalipers, drums, and/orrotorsof a different size  front, rear or both",
+        "points": 1
+    },
+    {
+        "id": 10,
+        "description": "Non-Factory Trim/modified ABS (e.g. Bosch Motorsport ABS)",
+        "points": 2
+    },
+    {
+        "id": 11,
+        "description": "Disabling any and all factory and/or aftermarket ABS or competing in a vehicle not originally equipped with ABS",
+        "points": -1
+    },
+    {
+        "id": 12,
+        "description": "Non-Factory Trim rotors of the same type and shape as OEM",
+        "points": 0
+    },
+    {
+        "id": 13,
+        "description": "Non-Factory Trim rotors of the same thickness and diameter as Factory Trim, including swap from one-piece to two-piece rotors",
+        "points": 0
+    },
+    {
+        "id": 14,
+        "description": "Non-Factory Trim brake pads or shoes",
+        "points": 0
+    },
+    {
+        "id": 15,
+        "description": "Non-Factory Trim/modified brake lines",
+        "points": 0
+    },
+    {
+        "id": 16,
+        "description": "Non-Factory Trim/modified brake ducting",
+        "points": 0
+    },
+    {
+        "id": 17,
+        "description": "Enabling or use of Factory Trim ABS",
+        "points": 0
+    },
+    {
+        "id": 18,
+        "description": "Non-Factory Trim drilled or slotted rotors of the same shape and size as OEM",
+        "points": 0
+    },
+    {
+        "id": 19,
+        "description": "Modified, re-located, or non-Factory Trim brake brakets",
+        "points": 0
+    }
+]

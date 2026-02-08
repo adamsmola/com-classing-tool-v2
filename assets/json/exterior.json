@@ -1,0 +1,107 @@
+[
+    {
+        "id": 9,
+        "description": "Non-Factory Trim/modified front bumper/air dam/spoiler",
+        "points": 1
+    },
+    {
+        "id": 10,
+        "description": "Non-Factory Trim/modified front splitter, in addition to bumper/air dam/spoiler",
+        "points": 1
+    },
+    {
+        "id": 11,
+        "description": "Non-Factory Trim/modified front splitter that extends more than 3.5 inches from front bumper skin leading edge, in addition to bumper/air dam/spoiler",
+        "points": 2
+    },
+    {
+        "id": 12,
+        "description": "Non-Factory Trim/modified canards (each set assessed points front or rear)",
+        "points": 1
+    },
+    {
+        "id": 13,
+        "description": "Non-Factory Trim Rear spoiler or wing including any airfoil that in no way protrudes more than 6 from the mounting location of the spoiler or wing, does not exceed the height of the vehicle, and does not extend beyond the width of the rear quarter panels",
+        "points": 1
+    },
+    {
+        "id": 14,
+        "description": "Non-Factory Trim Rear spoiler or wing including any airfoil that does not exceed the height of the vehicle, does not extend beyond the width of the rear quarter panels, and does not extend no more than 6\" beyond the skin of the rear bumper",
+        "points": 2
+    },
+    {
+        "id": 15,
+        "description": "Non-Factory Trim Rear spoiler or wing including any air foil of any size or shape",
+        "points": 3
+    },
+    {
+        "id": 16,
+        "description": "Non-Factory Trim hardtop of different shape and size which alters airflow aft of the OEM rear glass (eg CWest Honda S2000 aero hardtop)",
+        "points": 1
+    },
+    {
+        "id": 17,
+        "description": "Factory trim hardtop or Non-Factory Trim hardtop of the same shape and size of OEM hardtop ",
+        "points": 0
+    },
+    {
+        "id": 18,
+        "description": "Non-Factory Trim/modified vortex generator to roof, hardtop, rear glass or trunk",
+        "points": 1
+    },
+    {
+        "id": 19,
+        "description": "Non-Factory Trim/modified flat bottom",
+        "points": 2
+    },
+    {
+        "id": 20,
+        "description": "Non-Factory Trim/modified rear diffuser",
+        "points": 2
+    },
+    {
+        "id": 21,
+        "description": "Non-Factory Trim/modified side skirts",
+        "points": 1
+    },
+    {
+        "id": 22,
+        "description": "Non-factory trim Active aero, i.e. moveable aero devices; points assessed for each piece, in addition to assessment points listed above (set number of pieces below)",
+        "points": 4
+    },
+    {
+        "id": 23,
+        "description": "Front Underbody Tray that does not extend in front of the front bumper skin, beyond the width of the front quarter panels, or more than 18\" behind the front axle; note  points for front splitter, bumper, spoiler, air dam, and flat bottom assessed separately",
+        "points": 0
+    },
+    {
+        "id": 24,
+        "description": "Non-Factory Trim/modified fenders",
+        "points": 0
+    },
+    {
+        "id": 25,
+        "description": "Non-Factory Trim/modified doors",
+        "points": 0
+    },
+    {
+        "id": 26,
+        "description": "Non-Factory Trim/modified trunk lid",
+        "points": 0
+    },
+    {
+        "id": 27,
+        "description": "Non-Factory Trim/modified rear bumper",
+        "points": 0
+    },
+    {
+        "id": 28,
+        "description": "Non-Factory Trim/modified hood",
+        "points": 0
+    },
+    {
+        "id": 29,
+        "description": "1 COM supplied sticker on each side of the vehicle that is easily visible from the outside (2 stickers minimum)",
+        "points": -1
+    }
+]

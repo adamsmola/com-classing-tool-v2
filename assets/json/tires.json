@@ -1,0 +1,347 @@
+[
+    {
+        "id": 9,
+        "description": "Non-DOT Slicks (except where noted)",
+        "points": 15
+    },
+    {
+        "id": 10,
+        "description": "A8",
+        "points": 11
+    },
+    {
+        "id": 11,
+        "description": "BFGoodrich R1-S, g-force slick",
+        "points": 10
+    },
+    {
+        "id": 12,
+        "description": "Continental Challenge Wets",
+        "points": 10
+    },
+    {
+        "id": 13,
+        "description": "Goodyear RS AC - \"dot radial\"",
+        "points": 10
+    },
+    {
+        "id": 14,
+        "description": "Hankook c90, c91,C9, Wets",
+        "points": 10
+    },
+    {
+        "id": 15,
+        "description": "Hoosier Radial Wets, H2O,SMW",
+        "points": 10
+    },
+    {
+        "id": 16,
+        "description": "Hoosier A Compound (All)",
+        "points": 10
+    },
+    {
+        "id": 17,
+        "description": "Pirelli P-Zero Slick ( DH Compound ONLY)",
+        "points": 10
+    },
+    {
+        "id": 18,
+        "description": "R8 ",
+        "points": 7
+    },
+    {
+        "id": 19,
+        "description": "Hoosier SMX",
+        "points": 7
+    },
+    {
+        "id": 20,
+        "description": "Hankook c70, c71, C7",
+        "points": 6
+    },
+    {
+        "id": 21,
+        "description": "Yoko A055",
+        "points": 6
+    },
+    {
+        "id": 22,
+        "description": "Goodyear eagle RS",
+        "points": 6
+    },
+    {
+        "id": 23,
+        "description": "Hoosier R7, SM7, SM7.5 compound (All)",
+        "points": 6
+    },
+    {
+        "id": 24,
+        "description": "Kumho Ecsta V700",
+        "points": 6
+    },
+    {
+        "id": 25,
+        "description": "BFGoodrich R1",
+        "points": 6
+    },
+    {
+        "id": 26,
+        "description": "Hankook Z214 c50, c51, C5",
+        "points": 6
+    },
+    {
+        "id": 27,
+        "description": "DOT UTQG rating 41-120 (unclassified)",
+        "points": 6
+    },
+    {
+        "id": 28,
+        "description": "Continental Challenge Dry Tires",
+        "points": 2.5
+    },
+    {
+        "id": 29,
+        "description": "Hankook Z221 TD Soft",
+        "points": 2.5
+    },
+    {
+        "id": 30,
+        "description": "Goodyear Supercar 3R",
+        "points": 0
+    },
+    {
+        "id": 31,
+        "description": "Federal FZ-201 Soft",
+        "points": 0
+    },
+    {
+        "id": 32,
+        "description": "Hankook z221 TD Hard/ C3",
+        "points": 0
+    },
+    {
+        "id": 33,
+        "description": "RE71-RZ",
+        "points": 0
+    },
+    {
+        "id": 34,
+        "description": "Maxxis Victra RC-1 (R2)",
+        "points": 0
+    },
+    {
+        "id": 35,
+        "description": "Pirelli Tropheo R",
+        "points": 0
+    },
+    {
+        "id": 36,
+        "description": "DOT UTQG rating 121-200 (unclassified)",
+        "points": 0
+    },
+    {
+        "id": 37,
+        "description": "Toyo Proxes RR",
+        "points": -1
+    },
+    {
+        "id": 38,
+        "description": "VITOUR Tempesta P1",
+        "points": -1.5
+    },
+    {
+        "id": 39,
+        "description": "Toyo R ",
+        "points": -1.5
+    },
+    {
+        "id": 40,
+        "description": "Hoosier Track Attack ",
+        "points": -1.5
+    },
+    {
+        "id": 41,
+        "description": "RT660+",
+        "points": -1.5
+    },
+    {
+        "id": 42,
+        "description": "Bridgestone RE71RS",
+        "points": -1.5
+    },
+    {
+        "id": 43,
+        "description": "Yokahama A052",
+        "points": -1.5
+    },
+    {
+        "id": 44,
+        "description": "Nankang CRS",
+        "points": -1.5
+    },
+    {
+        "id": 45,
+        "description": "Bridgestone RE71R",
+        "points": -2.5
+    },
+    {
+        "id": 46,
+        "description": "Falken Azenis RT660",
+        "points": -2.5
+    },
+    {
+        "id": 47,
+        "description": "Federal FZ-201 Medium",
+        "points": -2.5
+    },
+    {
+        "id": 48,
+        "description": "Yoko ADVAN Apex",
+        "points": -2.5
+    },
+    {
+        "id": 49,
+        "description": "Kumho Ecsta V720, V730",
+        "points": -2.5
+    },
+    {
+        "id": 50,
+        "description": "Michelin Pilot Sport Cup 2",
+        "points": -2.5
+    },
+    {
+        "id": 51,
+        "description": "Michelin Sport Cup 2R",
+        "points": -2.5
+    },
+    {
+        "id": 52,
+        "description": "Nankang AR-1",
+        "points": -2.5
+    },
+    {
+        "id": 53,
+        "description": "BFGoodrich Rival S 1.5",
+        "points": -2.5
+    },
+    {
+        "id": 54,
+        "description": "Toyo R888",
+        "points": -2.5
+    },
+    {
+        "id": 55,
+        "description": "Toyo RA1",
+        "points": -2.5
+    },
+    {
+        "id": 56,
+        "description": "Toyo RR",
+        "points": -2.5
+    },
+    {
+        "id": 57,
+        "description": "Maxis VR2",
+        "points": -2.5
+    },
+    {
+        "id": 58,
+        "description": "Yokahama A048",
+        "points": -2.5
+    },
+    {
+        "id": 59,
+        "description": "DOT UTQG rating >201",
+        "points": -2.5
+    },
+    {
+        "id": 60,
+        "description": "R888R",
+        "points": -3.5
+    },
+    {
+        "id": 61,
+        "description": "Dunlop Direzza ZIII",
+        "points": -3.5
+    },
+    {
+        "id": 62,
+        "description": "Nitto NT01",
+        "points": -3.5
+    },
+    {
+        "id": 63,
+        "description": "Federal 595RS-RR, PRO",
+        "points": -3.5
+    },
+    {
+        "id": 64,
+        "description": "Goodyear Supercar 3",
+        "points": -3.5
+    },
+    {
+        "id": 65,
+        "description": "Goodyear Supercar G:2",
+        "points": -3.5
+    },
+    {
+        "id": 66,
+        "description": "Conti ExtremeContact sport 02",
+        "points": -3.5
+    },
+    {
+        "id": 67,
+        "description": "Toyo R1R",
+        "points": -3.5
+    },
+    {
+        "id": 68,
+        "description": "Michelin Pilot 4S ",
+        "points": -5
+    },
+    {
+        "id": 69,
+        "description": "BF Goodrich g-Force Rival",
+        "points": -5
+    },
+    {
+        "id": 70,
+        "description": "Continental ExtremeContact Force",
+        "points": -5
+    },
+    {
+        "id": 71,
+        "description": "Falken Azenis RT615K+",
+        "points": -5
+    },
+    {
+        "id": 72,
+        "description": "Hankook Ventus RS-4",
+        "points": -5
+    },
+    {
+        "id": 73,
+        "description": "Maxxis Victra VR-1",
+        "points": -5
+    },
+    {
+        "id": 74,
+        "description": "Cooper RS3-R",
+        "points": -7
+    },
+    {
+        "id": 75,
+        "description": "Cooper RS3-RS",
+        "points": -7
+    },
+    {
+        "id": 76,
+        "description": "Federal 595RS-R",
+        "points": -7
+    },
+    {
+        "id": 77,
+        "description": "Michelin Pilot Super Sport, Pilot Spt 4S",
+        "points": -7
+    }
+]
