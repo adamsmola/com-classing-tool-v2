@@ -126,6 +126,9 @@ function CollapsibleCategory({ title, children }) {
 
 
 export default function CarSelector() {
+
+  const min_display_points = 0; 
+
   const [year, setYear] = useState();
   const [make, setMake] = useState();
   const [model, setModel] = useState();
@@ -384,12 +387,12 @@ export default function CarSelector() {
 
         {year && make && model && (
           <Text style={styles.result}>
-            🚗 {year} {make} {model}
-            <br></br>
-
+            {/* 🚗 {year} {make} {model} */}
+           
             Horsepower: {getVehicleByYearMakeModel(year, make, model).factory_hp},
             Torque: {getVehicleByYearMakeModel(year, make, model).factory_tq},
-            Weight: {getVehicleByYearMakeModel(year, make, model).showroom_weight}
+            Weight: {getVehicleByYearMakeModel(year, make, model).showroom_weight},
+            Performance Adjustment: {(getVehicleByYearMakeModel(year, make, model).susp_index-60)/3*1.5}
             <br></br>
             <br></br>
             Base Points: {getPerformancePoints(getVehicleByYearMakeModel(year, make, model))}
@@ -432,7 +435,9 @@ export default function CarSelector() {
         <Text style={styles.sectionTitle}>Modifications</Text>
 
         <CollapsibleCategory key='Engine' title='Engine'>
-          {ENGINE_JSON.map((item: { id: number; desc: string; points: number }) => (
+          {ENGINE_JSON
+          .filter((item: { points: number }) => item.points > min_display_points)
+          .map((item: { id: number; description: string; points: number }) => (
             <Checkbox
               key={item.id}
               label={`${item.description},   (${item.points} pts)`}
@@ -455,7 +460,9 @@ export default function CarSelector() {
         </CollapsibleCategory>
 
         <CollapsibleCategory key='Drivetrain' title='Drivetrain'>
-          {DRIVETRAIN_JSON.map((item: { id: number; desc: string; points: number }) => (
+          {DRIVETRAIN_JSON
+          .filter((item: { points: number }) => item.points > min_display_points)
+          .map((item: { id: number; desc: string; points: number }) => (
             <Checkbox
               key={item.id}
               label={`${item.description},   (${item.points} pts)`}
@@ -466,7 +473,9 @@ export default function CarSelector() {
         </CollapsibleCategory>
 
         <CollapsibleCategory key='Suspension' title='Suspension' >
-          {SUSPENSION_JSON.map((item: { id: number; desc: string; points: number }) => (
+          {SUSPENSION_JSON
+          .filter((item: { points: number }) => item.points > min_display_points)
+          .map((item: { id: number; desc: string; points: number }) => (
             <Checkbox
               key={item.id}
               label={`${item.description},   (${item.points} pts)`}
@@ -477,7 +486,9 @@ export default function CarSelector() {
         </CollapsibleCategory>
 
         <CollapsibleCategory key='Brakes' title='Brakes'>
-          {BRAKES_JSON.map((item: { id: number; desc: string; points: number }) => (
+          {BRAKES_JSON
+               .filter((item: { points: number }) => item.points > min_display_points)
+               .map((item: { id: number; desc: string; points: number }) => (
             <Checkbox
               key={item.id}
               label={`${item.description},   (${item.points} pts)`}
@@ -488,7 +499,9 @@ export default function CarSelector() {
         </CollapsibleCategory>
 
         <CollapsibleCategory key='Exterior' title='Exterior'>
-          {EXTERIOR_JSON.map((item: { id: number; desc: string; points: number }) => (
+          {EXTERIOR_JSON
+               .filter((item: { points: number }) => item.points > min_display_points)
+               .map((item: { id: number; desc: string; points: number }) => (
             <Checkbox
               key={item.id}
               label={`${item.description},   (${item.points} pts)`}
