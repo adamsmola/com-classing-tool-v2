@@ -135,10 +135,42 @@ export default function CarSelector() {
   const [rearTireWidth, setRearTireWidth] = useState();
   const [selectedOptions, setSelectedOptions] = useState({});
   const [weight, setWeight] = useState('');
+  const [horsepower, setHorsepower] = useState('');
+  const [torque, setTorque] = useState('');
 
   function getModificationPoints() {
     let points = 0;
+    const v = getVehicleByYearMakeModel(year, make, model);
+    let dyno_delta = 0
+    if (horsepower != null && horsepower != '') {
+    console.log("hp = " + horsepower)
+    console.log("tq = " + torque) 
 
+    let scaled_power = 2/3 * parseFloat(horsepower) + 1/3 * parseFloat(torque)
+    let crank_scaled_power = scaled_power / .87
+    console.log("scaled power = " + scaled_power);
+    console.log("scaled power at crank = " + crank_scaled_power.toFixed(1));
+
+  
+    const dyno_orig_points = getPerformancePoints(v);
+    const dyno_copy = Object.assign({}, v);
+    dyno_copy.factory_hp = horsepower / .87;
+    dyno_copy.factory_tq = torque / .87;
+    console.log("factory_hp = " + dyno_copy.factory_hp);
+    console.log("factory_tq = " + dyno_copy.factory_tq);
+    const dyno_new_points = getPerformancePoints(dyno_copy);
+    dyno_delta = dyno_new_points - dyno_orig_points;
+
+
+    console.log("orig_pp = " + dyno_orig_points);
+    console.log("dyno_pp = " + dyno_new_points);
+    console.log("delta = " + dyno_delta.toFixed(1));
+
+    if (dyno_delta < -2) { dyno_delta = -2}
+
+    console.log("adjusted delta = " + dyno_delta.toFixed(1));
+  }
+    
     console.log(tclass);
     console.log(tire);
     console.log(frontTireWidth);
@@ -164,7 +196,7 @@ export default function CarSelector() {
     console.log("avg_width = " + avg_width);
     console.log("class_tire_width = " + class_tire_width);
 
-    const v = getVehicleByYearMakeModel(year, make, model);
+    // const v = getVehicleByYearMakeModel(year, make, model);
     const competition_weight = parseInt(weight);
     const showroom_weight = v.showroom_weight;
     const weight_delta = competition_weight - showroom_weight;
@@ -193,8 +225,8 @@ export default function CarSelector() {
       switch (category) {
         case 'Engine':
           for (let i = 0; i < ENGINE_JSON.length; i++) {
-            if (ENGINE_JSON[i].id == id) {
-              points += ENGINE_JSON[i].points
+            if (ENGINE_JSON[i].id == id && ( horsepower == null || horsepower == '')) {
+                points += ENGINE_JSON[i].points
             }
           }
           break;
@@ -230,7 +262,7 @@ export default function CarSelector() {
 
     });
 
-    return (points + tire_points + tire_width_points + parseFloat(delta)).toFixed(1);
+    return (dyno_delta + points + tire_points + tire_width_points + parseFloat(delta)).toFixed(1);
   }
 
 
@@ -408,6 +440,18 @@ export default function CarSelector() {
               onToggle={() => toggleOption('Engine', item.id)}
             />
           ))}
+          <TextInput
+          style={styles.input}
+          onChangeText={setHorsepower}
+          value={horsepower}
+          placeholder="Dynojet Horsepower" // Optional placeholder text
+        />
+          <TextInput
+          style={styles.input}
+          onChangeText={setTorque}
+          value={torque}
+          placeholder="Dynojet Torque" // Optional placeholder text
+        />
         </CollapsibleCategory>
 
         <CollapsibleCategory key='Drivetrain' title='Drivetrain'>
