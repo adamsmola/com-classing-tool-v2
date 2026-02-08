@@ -92,9 +92,13 @@ function getPerformancePoints(v) {
 
 
 
-function Checkbox({ label, checked, onToggle }) {
+function Checkbox({ label, checked, onToggle, disabled = false }) {
   return (
-    <Pressable style={styles.checkboxRow} onPress={onToggle}>
+    <Pressable
+      style={[styles.checkboxRow, disabled && styles.checkboxDisabled]}
+      onPress={disabled ? undefined : onToggle}
+      disabled={disabled}
+    >
       <View style={[styles.checkbox, checked && styles.checked]}>
         {checked && <Text style={styles.checkmark}>✓</Text>}
       </View>
@@ -443,6 +447,7 @@ export default function CarSelector() {
               label={`${item.description},   (${item.points} pts)`}
               checked={!!selectedOptions[`Engine:${item.id}`]}
               onToggle={() => toggleOption('Engine', item.id)}
+              disabled={String(horsepower ?? '').trim() !== ''}
             />
           ))}
           <TextInput
@@ -617,6 +622,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     marginRight: 10,
+  },
+  checkboxDisabled: {
+    opacity: 0.5,
   },
   checked: {
     backgroundColor: "#111",
