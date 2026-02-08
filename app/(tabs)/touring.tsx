@@ -26,38 +26,6 @@ const TIRE_WIDTH_BY_CLASS = [
   185, 205, 225, 245, 265, 285, 305, 315, 335,
 ];
 
-
-function Checkbox({ label, checked, onToggle }) {
-  return (
-    <Pressable style={styles.checkboxRow} onPress={onToggle}>
-      <View style={[styles.checkbox, checked && styles.checked]}>
-        {checked && <Text style={styles.checkmark}>✓</Text>}
-      </View>
-      <Text style={styles.checkboxLabel}>{label}</Text>
-    </Pressable>
-  );
-}
-
-function CollapsibleCategory({ title, children }) {
-  const [open, setOpen] = useState(false);
-
-  const toggle = () => {
-    LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
-    setOpen(!open);
-  };
-
-  return (
-    <View style={styles.category}>
-      <Pressable style={styles.categoryHeader} onPress={toggle}>
-        <Text style={styles.categoryTitle}>{title}</Text>
-        <Text style={styles.chevron}>{open ? "▾" : "▸"}</Text>
-      </Pressable>
-
-      {open && <View style={styles.categoryContent}>{children}</View>}
-    </View>
-  );
-}
-
 function getVehicleByYearMakeModel(year, make, model) {
   for (let i = 0; i < VEHICLES_JSON.length; i++) {
     const v = VEHICLES_JSON[i];
@@ -66,6 +34,7 @@ function getVehicleByYearMakeModel(year, make, model) {
     }
   }
 }
+
 
 function getTireWidthByClass(tclass) {
   const index = TCLASSES.indexOf(tclass);
@@ -106,17 +75,8 @@ function getMaxPointsByClass(tclass) {
     case 'TU':
       return 199.9; 
 
-}
-  if (points < 40) return "T30";
-  if (points < 50) return "T40";
-  if (points < 60) return "T50";
-  if (points < 70) return "T60";
-  if (points < 80) return "T70";
-  if (points < 90) return "T80";
-  if (points < 100) return "T90";
-  if (points < 110) return "T100";
-  return "TU";
-}
+}}
+
 
 function getPerformancePoints(v) {
   const scaledHorsepower = v.factory_hp * 2 / 3;
@@ -128,6 +88,41 @@ function getPerformancePoints(v) {
   const result = scaledWeightToPower + performanceAdjustment;
   return result.toFixed(1);
 }
+
+
+
+
+function Checkbox({ label, checked, onToggle }) {
+  return (
+    <Pressable style={styles.checkboxRow} onPress={onToggle}>
+      <View style={[styles.checkbox, checked && styles.checked]}>
+        {checked && <Text style={styles.checkmark}>✓</Text>}
+      </View>
+      <Text style={styles.checkboxLabel}>{label}</Text>
+    </Pressable>
+  );
+}
+
+function CollapsibleCategory({ title, children }) {
+  const [open, setOpen] = useState(false);
+
+  const toggle = () => {
+    LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
+    setOpen(!open);
+  };
+
+  return (
+    <View style={styles.category}>
+      <Pressable style={styles.categoryHeader} onPress={toggle}>
+        <Text style={styles.categoryTitle}>{title}</Text>
+        <Text style={styles.chevron}>{open ? "▾" : "▸"}</Text>
+      </Pressable>
+
+      {open && <View style={styles.categoryContent}>{children}</View>}
+    </View>
+  );
+}
+
 
 
 export default function CarSelector() {
@@ -238,7 +233,6 @@ export default function CarSelector() {
     return (points + tire_points + tire_width_points + parseFloat(delta)).toFixed(1);
   }
 
-  console.log(getVehicleByYearMakeModel(2013, "Subaru", "BRZ"));
 
   let min_year = 2026;
   for (let i = 0; i < VEHICLES_JSON.length; i++) {
@@ -371,11 +365,11 @@ export default function CarSelector() {
             {year && make && model && (
               <Text style={styles.result}>Modification Points: {getModificationPoints()}</Text>
             )}
-            <br></br>
+            <br></br><br></br>
             {year && make && model && (() => {
               const totalPoints = parseFloat(getPerformancePoints(getVehicleByYearMakeModel(year, make, model))) + parseFloat(getModificationPoints());
               return (
-                <Text style={totalPoints > getMaxPointsByClass(tclass) ? styles.resultred : styles.result}>
+                <Text style={totalPoints > getMaxPointsByClass(tclass) ? styles.result_red : styles.result_green}>
                   Total Points: {totalPoints.toFixed(1)}
                 </Text>
               );
@@ -526,11 +520,17 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: "500",
   },
-  resultred: {
+  result_red: {
     marginTop: 20,
     fontSize: 18,
     fontWeight: "500",
     color: "red",
+  },
+  result_green: {
+    marginTop: 20,
+    fontSize: 18,
+    fontWeight: "500",
+    color: "green",
   },
   sectionTitle: {
     fontSize: 20,
