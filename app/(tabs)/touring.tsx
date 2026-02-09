@@ -450,6 +450,8 @@ export default function CarSelector() {
               disabled={String(horsepower ?? '').trim() !== ''}
             />
           ))}
+                <Text style={styles.result_small}> Dyno Reclass</Text>
+         <br></br>
           <TextInput
           style={styles.input}
           onChangeText={setHorsepower}
@@ -582,6 +584,11 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: "500",
   },
+  result_small: {
+    marginTop: 20,
+    fontSize: 14,
+    fontWeight: "500",
+  },
   result_red: {
     marginTop: 20,
     fontSize: 18,
@@ -652,6 +659,7 @@ const styles = StyleSheet.create({
     paddingBottom: 8,
   },
   input: {
+    backgroundColor: "white",
     height: 40,
     borderColor: "gray",
     borderWidth: 1,
