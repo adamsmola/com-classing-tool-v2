@@ -2,81 +2,58 @@
 import { useState } from "react";
 import { Picker, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
 
-function getClassByPowerToWeight(power_to_weight: number) {
-  if (power_to_weight < 5.999)
-    return "Super Unlimited"
-  else if (power_to_weight < 8.799)
-    return "Super A"
-  else if (power_to_weight < 12.399)
-    return "Super B"
-  else if (power_to_weight < 15.799)
-    return "Super C"
-  else if (power_to_weight < 18.999)
-    return "Super D"
-  else
-    return "Super E"
+const SUPER_CLASS_LIMITS = [
+  { name: "Super Unlimited", minPtw: 0, maxPtw: 5.999 },
+  { name: "Super A", minPtw: 6, maxPtw: 8.799 },
+  { name: "Super B", minPtw: 8.8, maxPtw: 12.399 },
+  { name: "Super C", minPtw: 12.4, maxPtw: 15.799 },
+  { name: "Super D", minPtw: 15.8, maxPtw: 18.999 },
+  { name: "Super E", minPtw: 19, maxPtw: 99 },
+] as const;
+
+const SUPER_CLASSES = SUPER_CLASS_LIMITS.map((c) => c.name);
+
+function getClassByPowerToWeight(power_to_weight: number): string {
+  const found = SUPER_CLASS_LIMITS.find((c) => power_to_weight < c.maxPtw);
+  return found ? found.name : SUPER_CLASS_LIMITS[SUPER_CLASS_LIMITS.length - 1].name;
 }
 
-function getMinPowerToWeightByClass(sclass: string) {
-  switch (sclass) {
-    case "Super Unlimited":
-      return 0;
-    case "Super A":
-      return 6;
-    case "Super B":
-      return 8.8;
-    case "Super C":
-      return 12.4;
-    case "Super D":
-      return 15.8;
-    case "Super E":
-      return 19;
+function getMinPowerToWeightByClass(sclass: string): number {
+  return SUPER_CLASS_LIMITS.find((c) => c.name === sclass)?.minPtw ?? 0;
+}
+
+function getMaxPowerToWeightByClass(sclass: string): number {
+  return SUPER_CLASS_LIMITS.find((c) => c.name === sclass)?.maxPtw ?? 99;
+}
+
+function getCorrectedPower(horsepower: number, torque: number, dynoType: string): number {
+  let corr_factor = 1;
+  switch (dynoType) {
+    case "AWD":
+      corr_factor = 0.93;
+      break;
+    case "2WD":
+      corr_factor = 0.91;
+      break;
+    case "2WD-100":
+      corr_factor = 1;
+      break;
   }
+  return ((2 / 3) * horsepower + (1 / 3) * torque) * corr_factor;
 }
-
-function getMaxPowerToWeightByClass(sclass: string) {
-  switch (sclass) {
-    case "Super Unlimited":
-      return 5.999;
-    case "Super A":
-      return 8.799;
-    case "Super B":
-      return 12.399;
-    case "Super C":
-      return 15.799;
-    case "Super D":
-      return 18.999;
-    case "Super E":
-      return 99;
-  }
-}
-
-const SUPER_CLASSES = ["Super Unlimited", "Super A", "Super B", "Super C", "Super D", "Super E"];
-
 
 export default function SuperScreen() {
-
   const [horsepower, setHorsepower] = useState('');
   const [torque, setTorque] = useState('');
   const [weight, setWeight] = useState('');
   const [dynoType, setDynoType] = useState('');
 
-
-
-  let corr_factor = 1;
-  switch (dynoType) {
-    case 'AWD':
-      corr_factor = .93;
-      break;
-    case '2WD':
-      corr_factor = .91;
-      break;
-    case '2WD-100':
-      corr_factor = 1;
-      break;
-  }
-  let corrected_power = (((2 / 3) * parseFloat(horsepower) + 1 / 3 * parseFloat(torque)) * corr_factor).toFixed(3)
-  let power_to_weight = (parseFloat(weight) / parseFloat(corrected_power)).toFixed(2)
+  const corrected_power = getCorrectedPower(
+    parseFloat(horsepower) || 0,
+    parseFloat(torque) || 0,
+    dynoType ?? ""
+  );
+  let power_to_weight = (parseFloat(weight) / corrected_power).toFixed(2);
   let sclass = getClassByPowerToWeight(parseFloat(power_to_weight))
 
   return (
@@ -116,7 +93,7 @@ export default function SuperScreen() {
         </Picker>
 
         <Text style={styles.result}>
-          Corrected Power: {corrected_power} <br></br>
+          Corrected Power: {corrected_power.toFixed(3)} <br></br>
           Power to Weight: {power_to_weight} <br></br>
           Class: {sclass} <br></br><br></br><br></br>
 
