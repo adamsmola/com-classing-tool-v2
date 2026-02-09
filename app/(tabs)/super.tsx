@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { Picker, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
 
-function getClassByPowerToWeight(power_to_weight) {
+function getClassByPowerToWeight(power_to_weight: number) {
   if (power_to_weight < 5.999)
     return "Super Unlimited"
   else if (power_to_weight < 8.799)
@@ -17,8 +17,8 @@ function getClassByPowerToWeight(power_to_weight) {
     return "Super E"
 }
 
-function getMinPowerToWeightByClass(sclass) {
-  switch(sclass) {
+function getMinPowerToWeightByClass(sclass: string) {
+  switch (sclass) {
     case "Super Unlimited":
       return 0;
     case "Super A":
@@ -34,8 +34,8 @@ function getMinPowerToWeightByClass(sclass) {
   }
 }
 
-function getMaxPowerToWeightByClass(sclass) {
-  switch(sclass) {
+function getMaxPowerToWeightByClass(sclass: string) {
+  switch (sclass) {
     case "Super Unlimited":
       return 5.999;
     case "Super A":
@@ -51,7 +51,7 @@ function getMaxPowerToWeightByClass(sclass) {
   }
 }
 
-
+const SUPER_CLASSES = ["Super Unlimited", "Super A", "Super B", "Super C", "Super D", "Super E"];
 
 
 export default function SuperScreen() {
@@ -61,7 +61,7 @@ export default function SuperScreen() {
   const [weight, setWeight] = useState('');
   const [dynoType, setDynoType] = useState('');
 
-  
+
 
   let corr_factor = 1;
   switch (dynoType) {
@@ -75,37 +75,37 @@ export default function SuperScreen() {
       corr_factor = 1;
       break;
   }
-  let corrected_power = (((2/3) * horsepower + 1/3 * torque) * corr_factor).toFixed(3)
-  let power_to_weight = (weight / corrected_power).toFixed(2)
-  let sclass = getClassByPowerToWeight(power_to_weight)
-  
+  let corrected_power = (((2 / 3) * parseFloat(horsepower) + 1 / 3 * parseFloat(torque)) * corr_factor).toFixed(3)
+  let power_to_weight = (parseFloat(weight) / parseFloat(corrected_power)).toFixed(2)
+  let sclass = getClassByPowerToWeight(parseFloat(power_to_weight))
+
   return (
     <ScrollView>
       <View style={styles.container}>
-<Text style={styles.title}>Vehicle Info</Text>
+        <Text style={styles.title}>Vehicle Info</Text>
 
-      <TextInput
+        <TextInput
           style={styles.input}
           onChangeText={setHorsepower}
           value={horsepower}
-          placeholder="Dynojet Horsepower" // Optional placeholder text
+          placeholder="Dynojet Horsepower"
         />
-          <TextInput
+        <TextInput
           style={styles.input}
           onChangeText={setTorque}
           value={torque}
-          placeholder="Dynojet Torque" // Optional placeholder text
+          placeholder="Dynojet Torque"
         />
-          <TextInput
+        <TextInput
           style={styles.input}
           onChangeText={setWeight}
           value={weight}
-          placeholder="Competition Weight" // Optional placeholder text
+          placeholder="Competition Weight"
         />
         <Picker
           style={styles.picker}
           selectedValue={dynoType}
-          onValueChange={(value) => {
+          onValueChange={(value: string) => {
             setDynoType(value);
           }}
         >
@@ -113,18 +113,18 @@ export default function SuperScreen() {
           <Picker.Item key='2WD' label='Dynojet 2WD' value='2WD' />
           <Picker.Item key='AWD' label='AWD' value='AWD' />
           <Picker.Item key='2WD-100' label='Other 2WD' value='2WD-100' />
-          </Picker>
+        </Picker>
 
-          <Text style={styles.result}>
-            Corrected Power: {corrected_power} <br></br>
-            Power to Weight: {power_to_weight} <br></br>
-            Class: {sclass} <br></br><br></br><br></br>
+        <Text style={styles.result}>
+          Corrected Power: {corrected_power} <br></br>
+          Power to Weight: {power_to_weight} <br></br>
+          Class: {sclass} <br></br><br></br><br></br>
 
 
-            <Text style={styles.title}>Data Tables</Text>
-            <br></br><br></br>
-            <table style={styles.tableLightBlue}>
-              <caption>Allowable Weight at Current Power</caption>
+          <Text style={styles.title}>Data Tables</Text>
+          <br></br><br></br>
+          <table style={styles.tableLightBlue}>
+            <caption>Allowable Weight at Current Power</caption>
             <thead>
               <tr>
                 <th>Class</th>
@@ -133,41 +133,18 @@ export default function SuperScreen() {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>Super Unlimited</td>
-                <td>{(getMinPowerToWeightByClass("Super Unlimited")*corrected_power).toFixed(0)}</td>
-                <td>{(getMaxPowerToWeightByClass("Super Unlimited")*corrected_power).toFixed(0)}</td>
-              </tr>
-              <tr>
-                <td>Super A</td>
-                <td>{(getMinPowerToWeightByClass("Super A")*corrected_power).toFixed(0)}</td>
-                <td>{(getMaxPowerToWeightByClass("Super A")*corrected_power).toFixed(0)}</td>
-              </tr>
-              <tr>
-                <td>Super B</td>
-                <td>{(getMinPowerToWeightByClass("Super B")*corrected_power).toFixed(0)}</td>
-                <td>{(getMaxPowerToWeightByClass("Super B")*corrected_power).toFixed(0)}</td>
-              </tr>
-              <tr>
-                <td>Super C</td>
-                <td>{(getMinPowerToWeightByClass("Super C")*corrected_power).toFixed(0)}</td>
-                <td>{(getMaxPowerToWeightByClass("Super C")*corrected_power).toFixed(0)}</td>
-              </tr>
-              <tr>
-                <td>Super D</td>
-                <td>{(getMinPowerToWeightByClass("Super D")*corrected_power).toFixed(0)}</td>
-                <td>{(getMaxPowerToWeightByClass("Super D")*corrected_power).toFixed(0)}</td>
-              </tr>
-              <tr>
-                <td>Super E</td>
-                <td>{(getMinPowerToWeightByClass("Super E")*corrected_power).toFixed(0)}</td>
-                <td>NA</td>
-              </tr>
+              {SUPER_CLASSES.map((sclass) => (
+                <tr key={sclass}>
+                  <td>{sclass}</td>
+                  <td>{(getMinPowerToWeightByClass(sclass) * corrected_power).toFixed(0)}</td>
+                  <td>{sclass === "Super E" ? "NA" : (getMaxPowerToWeightByClass(sclass) * corrected_power).toFixed(0)}</td>
+                </tr>
+              ))}
             </tbody>
           </table>
           <br></br><br></br>
           <table style={styles.tableLightYellow}>
-              <caption>Allowable Power at Current Weight (Including Dyno Correction)</caption>
+            <caption>Allowable Power at Current Weight (Including Dyno Correction)</caption>
             <thead>
               <tr>
                 <th>Class</th>
@@ -176,42 +153,19 @@ export default function SuperScreen() {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>Super Unlimited</td>
-                <td>{(weight/getMaxPowerToWeightByClass("Super Unlimited")).toFixed(0)}</td>
-                <td>NA</td>
-              </tr>
-              <tr>
-                <td>Super A</td>
-                <td>{(weight/getMaxPowerToWeightByClass("Super A")).toFixed(0)}</td>
-                <td>{(weight/getMinPowerToWeightByClass("Super A")).toFixed(0)}</td>
-              </tr>
-              <tr>
-                <td>Super B</td>
-                <td>{(weight/getMaxPowerToWeightByClass("Super B")).toFixed(0)}</td>
-                <td>{(weight/getMinPowerToWeightByClass("Super B")).toFixed(0)}</td>
-              </tr>
-              <tr>
-                <td>Super C</td>
-                <td>{(weight/getMaxPowerToWeightByClass("Super C")).toFixed(0)}</td>
-                <td>{(weight/getMinPowerToWeightByClass("Super C")).toFixed(0)}</td>
-              </tr>
-              <tr>
-                <td>Super D</td>
-                <td>{(weight/getMaxPowerToWeightByClass("Super D")).toFixed(0)}</td>
-                <td>{(weight/getMinPowerToWeightByClass("Super D")).toFixed(0)}</td>
-              </tr>
-              <tr>
-                <td>Super E</td>
-                <td>{(weight/getMaxPowerToWeightByClass("Super E")).toFixed(0)}</td>
-                <td>{(weight/getMinPowerToWeightByClass("Super E")).toFixed(0)}</td>
-              </tr>
+              {SUPER_CLASSES.map((sclass) => (
+                <tr key={sclass}>
+                  <td>{sclass}</td>
+                  <td>{(weight / getMaxPowerToWeightByClass(sclass)).toFixed(0)}</td>
+                  <td>{sclass === "Super Unlimited" ? "NA" : (weight / getMinPowerToWeightByClass(sclass)).toFixed(0)}</td>
+                </tr>
+              ))}
             </tbody>
           </table>
-          </Text>
+        </Text>
 
-  
-    </View>
+
+      </View>
     </ScrollView>
   );
 }
@@ -233,7 +187,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 8,
     paddingHorizontal: 10,
-  },  
+  },
   picker: {
     padding: 10,
   },
@@ -260,5 +214,5 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: "500",
   },
-  
+
 });
