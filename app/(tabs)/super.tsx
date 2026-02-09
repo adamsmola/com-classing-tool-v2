@@ -27,19 +27,18 @@ function getMaxPowerToWeightByClass(sclass: string): number {
 }
 
 function getCorrectedPower(horsepower: number, torque: number, dynoType: string): number {
-  let corr_factor = 1;
-  switch (dynoType) {
-    case "AWD":
-      corr_factor = 0.93;
-      break;
-    case "2WD":
-      corr_factor = 0.91;
-      break;
-    case "2WD-100":
-      corr_factor = 1;
-      break;
-  }
-  return ((2 / 3) * horsepower + (1 / 3) * torque) * corr_factor;
+  const correctionFactors: Record<string, number> = {
+    "AWD": 0.93,
+    "2WD": 0.91,
+    "2WD-100": 1,
+  };
+
+  const corrFactor = correctionFactors[dynoType] ?? 1;
+  return ((2 / 3) * horsepower + (1 / 3) * torque) * corrFactor;
+}
+
+function getPowerToWeight(weight: number, corrected_power: number): number {
+  return weight / corrected_power;
 }
 
 export default function SuperScreen() {
@@ -53,8 +52,9 @@ export default function SuperScreen() {
     parseFloat(torque) || 0,
     dynoType ?? ""
   );
-  let power_to_weight = (parseFloat(weight) / corrected_power).toFixed(2);
-  let sclass = getClassByPowerToWeight(parseFloat(power_to_weight))
+
+  const power_to_weight = getPowerToWeight(parseFloat(weight) || 0, corrected_power);
+  const sclass = getClassByPowerToWeight(power_to_weight);
 
   return (
     <ScrollView>
@@ -94,7 +94,7 @@ export default function SuperScreen() {
 
         <Text style={styles.result}>
           Corrected Power: {corrected_power.toFixed(3)} <br></br>
-          Power to Weight: {power_to_weight} <br></br>
+          Power to Weight: {power_to_weight.toFixed(2)} <br></br>
           Class: {sclass} <br></br><br></br><br></br>
 
 
