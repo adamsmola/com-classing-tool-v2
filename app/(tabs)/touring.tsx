@@ -1,95 +1,31 @@
 import { Picker } from "@react-native-picker/picker";
 import { useState } from "react";
 import { LayoutAnimation, Platform, Pressable, ScrollView, StyleSheet, Text, TextInput, UIManager, View } from "react-native";
+import {
+  BRAKES_JSON,
+  DRIVETRAIN_JSON,
+  ENGINE_JSON,
+  EXTERIOR_JSON,
+  getClassByPoints,
+  getMaxPointsByClass,
+  getModificationPoints,
+  getPerformancePoints,
+  getTireWidthByClass,
+  getVehicleByYearMakeModel,
+  getVehicleYears,
+  SUSPENSION_JSON,
+  TCLASSES,
+  TIRES_JSON,
+  VEHICLES_JSON
+} from "../../lib/touringClass";
 
 if (Platform.OS === "android" && UIManager.setLayoutAnimationEnabledExperimental) {
   UIManager.setLayoutAnimationEnabledExperimental(true);
 }
 
-const BRAKES_JSON = require('../../assets/json/brakes.json');
-const DRIVETRAIN_JSON = require('../../assets/json/drivetrain.json');
-const ENGINE_JSON = require('../../assets/json/engine.json');
-const EXTERIOR_JSON = require('../../assets/json/exterior.json');
-const SUSPENSION_JSON = require('../../assets/json/suspension.json');
-const TIRES_JSON = require('../../assets/json/tires.json');
-const VEHICLES_JSON = require('../../assets/json/vehicles.json');
-
 const TIRE_WIDTH = [
-  "185", "195", "205", "215", "225", "235", "245", "255", "265", "275", "285", "295", "305", "315", "325", "335",
+  "185", "195", "205", "215", "225", "235", "245", "255", "265", "275", "285", "295", "305", "315", "325", "335"
 ];
-
-const TCLASSES = [
-  "T30", "T40", "T50", "T60", "T70", "T80", "T90", "T100", "TU",
-];
-
-const TIRE_WIDTH_BY_CLASS = [
-  185, 205, 225, 245, 265, 285, 305, 315, 335,
-];
-
-function getVehicleByYearMakeModel(year, make, model) {
-  for (let i = 0; i < VEHICLES_JSON.length; i++) {
-    const v = VEHICLES_JSON[i];
-    if (year >= v.start_year && year <= v.end_year && make == v.make && model == v.model) {
-      return v;
-    }
-  }
-}
-
-
-function getTireWidthByClass(tclass) {
-  const index = TCLASSES.indexOf(tclass);
-  return TIRE_WIDTH_BY_CLASS[index];
-}
-
-function getClassByPoints(points) {
-  if (points < 40) return "T30";
-  if (points < 50) return "T40";
-  if (points < 60) return "T50";
-  if (points < 70) return "T60";
-  if (points < 80) return "T70";
-  if (points < 90) return "T80";
-  if (points < 100) return "T90";
-  if (points < 110) return "T100";
-  return "TU";
-}
-
-function getMaxPointsByClass(tclass) {
-
-  switch (tclass) {
-    case 'T30':
-      return 39.9;
-    case 'T40':
-      return 49.9;
-    case 'T50':
-      return 59.9;
-    case 'T60':
-      return 69.9;
-    case 'T70':
-      return 79.9;
-    case 'T80':
-      return 89.9;
-    case 'T90':
-      return 99.9;
-    case 'T100': 
-      return 109.9;
-    case 'TU':
-      return 199.9; 
-
-}}
-
-
-function getPerformancePoints(v) {
-  const scaledHorsepower = v.factory_hp * 2 / 3;
-  const scaledTorque = v.factory_tq * 1 / 3;
-  const scaledPower = scaledHorsepower + scaledTorque;
-  const weightToPower = v.showroom_weight / scaledPower;
-  const scaledWeightToPower = weightToPower * -4.25 + 112;
-  const performanceAdjustment = (v.susp_index - 60) / 3 * 1.5;
-  const result = scaledWeightToPower + performanceAdjustment;
-  return result.toFixed(1);
-}
-
-
 
 
 function Checkbox({ label, checked, onToggle, disabled = false }) {
@@ -145,149 +81,7 @@ export default function CarSelector() {
   const [horsepower, setHorsepower] = useState('');
   const [torque, setTorque] = useState('');
 
-  function getModificationPoints() {
-    let points = 0;
-    const v = getVehicleByYearMakeModel(year, make, model);
-    let dyno_delta = 0
-    if (horsepower != null && horsepower != '') {
-    console.log("hp = " + horsepower)
-    console.log("tq = " + torque) 
-
-    let scaled_power = 2/3 * parseFloat(horsepower) + 1/3 * parseFloat(torque)
-    let crank_scaled_power = scaled_power / .87
-    console.log("scaled power = " + scaled_power);
-    console.log("scaled power at crank = " + crank_scaled_power.toFixed(1));
-
-  
-    const dyno_orig_points = getPerformancePoints(v);
-    const dyno_copy = Object.assign({}, v);
-    dyno_copy.factory_hp = horsepower / .87;
-    dyno_copy.factory_tq = torque / .87;
-    console.log("factory_hp = " + dyno_copy.factory_hp);
-    console.log("factory_tq = " + dyno_copy.factory_tq);
-    const dyno_new_points = getPerformancePoints(dyno_copy);
-    dyno_delta = dyno_new_points - dyno_orig_points;
-
-
-    console.log("orig_pp = " + dyno_orig_points);
-    console.log("dyno_pp = " + dyno_new_points);
-    console.log("delta = " + dyno_delta.toFixed(1));
-
-    if (dyno_delta < -2) { dyno_delta = -2}
-
-    console.log("adjusted delta = " + dyno_delta.toFixed(1));
-  }
-    
-    console.log(tclass);
-    console.log(tire);
-    console.log(frontTireWidth);
-    console.log(rearTireWidth);
-
-    let tire_points = 0;
-    for (let i = 0; i < TIRES_JSON.length; i++) {
-      if (TIRES_JSON[i].description == tire) {
-        tire_points = TIRES_JSON[i].points;
-      }
-    }
-
-    const avg_width = (parseInt(frontTireWidth) + parseInt(rearTireWidth)) / 2;
-    const index = TCLASSES.indexOf(tclass);
-    const class_tire_width = TIRE_WIDTH_BY_CLASS[index];
-    const diff = avg_width - class_tire_width;
-    const tire_width_points = diff / 20;
-
-    console.log("diff = " + diff);
-    console.log("tire_width_points = " + tire_width_points);
-    console.log("index = " + index);
-    console.log("tire pts = " + tire_points);
-    console.log("avg_width = " + avg_width);
-    console.log("class_tire_width = " + class_tire_width);
-
-    // const v = getVehicleByYearMakeModel(year, make, model);
-    const competition_weight = parseInt(weight);
-    const showroom_weight = v.showroom_weight;
-    const weight_delta = competition_weight - showroom_weight;
-
-    console.log("competition weight = " + weight);
-    console.log("showroom weight = " + v.showroom_weight);
-    console.log("weight_delta = " + weight_delta);
-
-    const orig_points = getPerformancePoints(v);
-    const copy = Object.assign({}, v);
-    copy.showroom_weight = competition_weight;
-    const new_points = getPerformancePoints(copy);
-    const delta = (new_points - orig_points).toFixed(1);
-
-    console.log("orig points = " + orig_points);
-    console.log("new points = " + new_points);
-    console.log("delta = " + delta);
-
-
-    Object.keys(selectedOptions).forEach((key) => {
-      if (!selectedOptions[key]) return;
-
-      const category = key.split(":")[0];
-      const id = key.split(":")[1];
-
-      switch (category) {
-        case 'Engine':
-          for (let i = 0; i < ENGINE_JSON.length; i++) {
-            if (ENGINE_JSON[i].id == id && ( horsepower == null || horsepower == '')) {
-                points += ENGINE_JSON[i].points
-            }
-          }
-          break;
-        case 'Drivetrain':
-          for (let i = 0; i < DRIVETRAIN_JSON.length; i++) {
-            if (DRIVETRAIN_JSON[i].id == id) {
-              points += DRIVETRAIN_JSON[i].points
-            }
-          }
-          break;
-        case 'Suspension':
-          for (let i = 0; i < SUSPENSION_JSON.length; i++) {
-            if (SUSPENSION_JSON[i].id == id) {
-              points += SUSPENSION_JSON[i].points
-            }
-          }
-          break;
-        case 'Brakes':
-          for (let i = 0; i < BRAKES_JSON.length; i++) {
-            if (BRAKES_JSON[i].id == id) {
-              points += BRAKES_JSON[i].points
-            }
-          }
-          break;
-        case 'Exterior':
-          for (let i = 0; i < EXTERIOR_JSON.length; i++) {
-            if (EXTERIOR_JSON[i].id == id) {
-              points += EXTERIOR_JSON[i].points
-            }
-          }
-          break;
-      }
-
-    });
-
-    return (dyno_delta + points + tire_points + tire_width_points + parseFloat(delta)).toFixed(1);
-  }
-
-
-  let min_year = 2026;
-  for (let i = 0; i < VEHICLES_JSON.length; i++) {
-    if (VEHICLES_JSON[i].start_year < min_year) {
-      min_year = VEHICLES_JSON[i].start_year;
-    }
-  }
-
-  let max_year = 1900;
-  for (let i = 0; i < VEHICLES_JSON.length; i++) {
-    if (VEHICLES_JSON[i].end_year > max_year) {
-      max_year = VEHICLES_JSON[i].end_year;
-    }
-  }
-
-  const years = Array.from({ length: max_year - min_year }, (_, i) => max_year - i);
+  const years = getVehicleYears();
 
   const year_make_model: Record<number, Record<string, string[]>> = {};
   years.forEach((year) => {
@@ -402,11 +196,11 @@ export default function CarSelector() {
             Base Points: {getPerformancePoints(getVehicleByYearMakeModel(year, make, model))}
             <br></br>
             {year && make && model && (
-              <Text style={styles.result}>Modification Points: {getModificationPoints()}</Text>
+              <Text style={styles.result}>Modification Points: {getModificationPoints({ year, make, model, horsepower, torque, weight, tclass, tire, frontTireWidth, rearTireWidth, selectedOptions })}</Text>
             )}
             <br></br><br></br>
             {year && make && model && (() => {
-              const totalPoints = parseFloat(getPerformancePoints(getVehicleByYearMakeModel(year, make, model))) + parseFloat(getModificationPoints());
+              const totalPoints = parseFloat(getPerformancePoints(getVehicleByYearMakeModel(year, make, model))) + parseFloat(getModificationPoints({ year, make, model, horsepower, torque, weight, tclass, tire, frontTireWidth, rearTireWidth, selectedOptions }));
               return (
                 <Text style={totalPoints > getMaxPointsByClass(tclass) ? styles.result_red : styles.result_green}>
                   Total Points: {totalPoints.toFixed(1)}

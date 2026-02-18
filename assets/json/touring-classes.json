@@ -1,0 +1,13 @@
+{
+  "classes": [
+    { "id": "T30", "maxPoints": 39.9, "tireWidth": 185 },
+    { "id": "T40", "maxPoints": 49.9, "tireWidth": 205 },
+    { "id": "T50", "maxPoints": 59.9, "tireWidth": 225 },
+    { "id": "T60", "maxPoints": 69.9, "tireWidth": 245 },
+    { "id": "T70", "maxPoints": 79.9, "tireWidth": 265 },
+    { "id": "T80", "maxPoints": 89.9, "tireWidth": 285 },
+    { "id": "T90", "maxPoints": 99.9, "tireWidth": 305 },
+    { "id": "T100", "maxPoints": 109.9, "tireWidth": 315 },
+    { "id": "TU", "maxPoints": 199.9, "tireWidth": 335 }
+  ]
+}
