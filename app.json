@@ -9,7 +9,11 @@
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.asmola.classingtool",
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false
+      }
     },
     "android": {
       "adaptiveIcon": {
@@ -41,7 +45,15 @@
       ],
       "expo-sqlite",
       "expo-mail-composer",
-      "expo-asset"
+      [
+        "expo-asset",
+        {
+          "assets": [
+            "./assets/images",
+            "./assets/json"
+          ]
+        }
+      ]
     ],
     "experiments": {
       "typedRoutes": true,

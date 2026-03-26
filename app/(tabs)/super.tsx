@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { Picker, ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
+import { ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
+import DropDownPicker from "react-native-dropdown-picker";
 import {
   SUPER_CLASSES,
   getClassByPowerToWeight,
@@ -13,7 +14,13 @@ export default function SuperScreen() {
   const [horsepower, setHorsepower] = useState('');
   const [torque, setTorque] = useState('');
   const [weight, setWeight] = useState('');
-  const [dynoType, setDynoType] = useState('');
+  const [dynoType, setDynoType] = useState<string | undefined>(undefined);
+  const [dynoOpen, setDynoOpen] = useState(false);
+  const [dynoItems, setDynoItems] = useState([
+    { label: "Dynojet 2WD", value: "2WD" },
+    { label: "AWD", value: "AWD" },
+    { label: "Other 2WD", value: "2WD-100" },
+  ]);
 
   const corrected_power = getCorrectedPower(
     parseFloat(horsepower) || 0,
@@ -21,11 +28,12 @@ export default function SuperScreen() {
     dynoType ?? ""
   );
 
-  const power_to_weight = getPowerToWeight(parseFloat(weight) || 0, corrected_power);
+  const weightNum = parseFloat(weight) || 0;
+  const power_to_weight = getPowerToWeight(weightNum, corrected_power);
   const sclass = getClassByPowerToWeight(power_to_weight);
 
   return (
-    <ScrollView>
+    <ScrollView keyboardShouldPersistTaps="handled">
       <View style={styles.container}>
         <Text style={styles.title}>Vehicle Info</Text>
 
@@ -47,68 +55,88 @@ export default function SuperScreen() {
           value={weight}
           placeholder="Competition Weight"
         />
-        <Picker
-          style={styles.picker}
-          selectedValue={dynoType}
-          onValueChange={(value: string) => {
-            setDynoType(value);
+        <DropDownPicker
+          open={dynoOpen}
+          setOpen={(open) => {
+            setDynoOpen((prev) => (typeof open === "function" ? open(prev) : open));
           }}
-        >
-          <Picker.Item label="Dyno Type" value={undefined} />
-          <Picker.Item key='2WD' label='Dynojet 2WD' value='2WD' />
-          <Picker.Item key='AWD' label='AWD' value='AWD' />
-          <Picker.Item key='2WD-100' label='Other 2WD' value='2WD-100' />
-        </Picker>
+          value={dynoType ?? null}
+          setValue={(callback) => {
+            setDynoType((prev) => {
+              const next =
+                typeof callback === "function"
+                  ? (callback as (p: string | null | undefined) => string | null | undefined)(prev ?? null)
+                  : callback;
+              return next === null || next === undefined ? undefined : String(next);
+            });
+          }}
+          items={dynoItems}
+          setItems={setDynoItems}
+          placeholder="Select Dyno Type"
+          listMode="MODAL"
+          style={styles.dropdown}
+          dropDownContainerStyle={styles.dropdownContainer}
+        />
 
-        <Text style={styles.result}>
-          Corrected Power: {corrected_power.toFixed(3)} <br></br>
-          Power to Weight: {power_to_weight.toFixed(2)} <br></br>
-          Class: {sclass} <br></br><br></br><br></br>
+        <View style={styles.resultBlock}>
+          <Text style={styles.result}>
+            Corrected Power: {corrected_power.toFixed(3)}
+          </Text>
+          <Text style={styles.result}>
+            Power to Weight: {power_to_weight.toFixed(2)}
+          </Text>
+          <Text style={styles.result}>
+            Class: {sclass}
+          </Text>
 
+          <Text style={[styles.title, styles.tablesHeading]}>Data Tables</Text>
 
-          <Text style={styles.title}>Data Tables</Text>
-          <br></br><br></br>
-          <table style={styles.tableLightBlue}>
-            <caption>Allowable Weight at Current Power</caption>
-            <thead>
-              <tr>
-                <th>Class</th>
-                <th>Minimum</th>
-                <th>Maximum</th>
-              </tr>
-            </thead>
-            <tbody>
-              {SUPER_CLASSES.map((sclass) => (
-                <tr key={sclass}>
-                  <td>{sclass}</td>
-                  <td>{(getMinPowerToWeightByClass(sclass) * corrected_power).toFixed(0)}</td>
-                  <td>{sclass === "Super E" ? "NA" : (getMaxPowerToWeightByClass(sclass) * corrected_power).toFixed(0)}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-          <br></br><br></br>
-          <table style={styles.tableLightYellow}>
-            <caption>Allowable Power at Current Weight (Including Dyno Correction)</caption>
-            <thead>
-              <tr>
-                <th>Class</th>
-                <th>Minimum</th>
-                <th>Maximum</th>
-              </tr>
-            </thead>
-            <tbody>
-              {SUPER_CLASSES.map((sclass) => (
-                <tr key={sclass}>
-                  <td>{sclass}</td>
-                  <td>{(weight / getMaxPowerToWeightByClass(sclass)).toFixed(0)}</td>
-                  <td>{sclass === "Super Unlimited" ? "NA" : (weight / getMinPowerToWeightByClass(sclass)).toFixed(0)}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </Text>
+          <View style={[styles.tableWrap, styles.tableLightBlue]}>
+            <Text style={styles.tableCaption}>Allowable Weight at Current Power</Text>
+            <View style={styles.tableRowHeader}>
+              <Text style={styles.th}>Class</Text>
+              <Text style={styles.th}>Minimum</Text>
+              <Text style={styles.th}>Maximum</Text>
+            </View>
+            {SUPER_CLASSES.map((rowClass) => (
+              <View key={rowClass} style={styles.tableRow}>
+                <Text style={styles.td}>{rowClass}</Text>
+                <Text style={styles.td}>
+                  {(getMinPowerToWeightByClass(rowClass) * corrected_power).toFixed(0)}
+                </Text>
+                <Text style={styles.td}>
+                  {rowClass === "Super E"
+                    ? "NA"
+                    : (getMaxPowerToWeightByClass(rowClass) * corrected_power).toFixed(0)}
+                </Text>
+              </View>
+            ))}
+          </View>
 
+          <View style={[styles.tableWrap, styles.tableLightYellow]}>
+            <Text style={styles.tableCaption}>
+              Allowable Power at Current Weight (Including Dyno Correction)
+            </Text>
+            <View style={styles.tableRowHeader}>
+              <Text style={styles.th}>Class</Text>
+              <Text style={styles.th}>Minimum</Text>
+              <Text style={styles.th}>Maximum</Text>
+            </View>
+            {SUPER_CLASSES.map((rowClass) => (
+              <View key={`${rowClass}-pwr`} style={styles.tableRow}>
+                <Text style={styles.td}>{rowClass}</Text>
+                <Text style={styles.td}>
+                  {(weightNum / getMaxPowerToWeightByClass(rowClass)).toFixed(0)}
+                </Text>
+                <Text style={styles.td}>
+                  {rowClass === "Super Unlimited"
+                    ? "NA"
+                    : (weightNum / getMinPowerToWeightByClass(rowClass)).toFixed(0)}
+                </Text>
+              </View>
+            ))}
+          </View>
+        </View>
 
       </View>
     </ScrollView>
@@ -133,29 +161,69 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     paddingHorizontal: 10,
   },
-  picker: {
-    padding: 10,
+  dropdown: {
+    marginBottom: 12,
+    borderColor: "#ccc",
+    borderWidth: 1,
+    borderRadius: 8,
+    minHeight: 48,
+  },
+  dropdownContainer: {
+    borderColor: "#ccc",
+    borderWidth: 1,
+    borderRadius: 8,
   },
   tableLightBlue: {
     backgroundColor: "#d4e9f7",
-    padding: 12,
-    marginVertical: 8,
-    borderColor: "grey",
-    borderWidth: 3,
-    borderStyle: "solid",
-    width: '80%',
   },
   tableLightYellow: {
     backgroundColor: "#ffe9ad",
+  },
+  resultBlock: {
+    marginTop: 20,
+    width: "100%",
+  },
+  tablesHeading: {
+    marginTop: 16,
+  },
+  tableWrap: {
     padding: 12,
     marginVertical: 8,
     borderColor: "grey",
     borderWidth: 3,
-    borderStyle: "solid",
-    width: '80%',
+    borderRadius: 4,
+    alignSelf: "stretch",
+  },
+  tableCaption: {
+    fontSize: 15,
+    fontWeight: "600",
+    marginBottom: 10,
+    textAlign: "center",
+  },
+  tableRowHeader: {
+    flexDirection: "row",
+    borderBottomWidth: 2,
+    borderBottomColor: "#888",
+    paddingBottom: 6,
+    marginBottom: 4,
+  },
+  tableRow: {
+    flexDirection: "row",
+    paddingVertical: 6,
+    borderBottomWidth: StyleSheet.hairlineWidth,
+    borderBottomColor: "#aaa",
+  },
+  th: {
+    flex: 1,
+    fontWeight: "700",
+    fontSize: 14,
+  },
+  td: {
+    flex: 1,
+    fontSize: 14,
   },
   result: {
-    marginTop: 20,
+    marginTop: 8,
     fontSize: 18,
     fontWeight: "500",
   },
