@@ -8,6 +8,10 @@
     { "id": "T80", "maxPoints": 89.9, "tireWidth": 285 },
     { "id": "T90", "maxPoints": 99.9, "tireWidth": 305 },
     { "id": "T100", "maxPoints": 109.9, "tireWidth": 315 },
-    { "id": "TU", "maxPoints": 199.9, "tireWidth": 335 }
+    { "id": "T1", "maxPoints": 120, "tireWidth": 315 },
+    { "id": "T2", "maxPoints": 94.9, "tireWidth": 285 },
+    { "id": "T3", "maxPoints": 74.9, "tireWidth": 255 },
+    { "id": "T4", "maxPoints": 59.9, "tireWidth": 225 },
+    { "id": "T5", "maxPoints": 44.9, "tireWidth": 205 }
   ]
 }
